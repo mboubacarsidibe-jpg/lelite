@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="L'Élite, hebdomadaire d'information malien. Maquette de présentation du site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>L'Élite</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+<style>
+html{color-scheme:light}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout : conçu d'abord pour le téléphone. En-tête compact et collant (logo + S'abonner), rubriques défilantes,
+   une colonne de lecture ; à partir de 900px, une à deux colonnes (papier principal + fil « En continu »).
+   Titres en sérif de presse, interface en grotesque. Le filet tricolore reprend la manchette papier du journal. */
+:root{
+  --paper:#FFFFFF; --soft:#F3F5F8; --ink:#12161C; --muted:#5A6472; --line:#DDE1E7;
+  --blue:#1B5EA8; --red:#C9202F; --gold:#F2C230; --on-gold:#12161C;
+  --band:#101826; --band-fg:#F2F4F8; --band-muted:#A8B2C2; --band-line:#2B3850;
+  --green:#14A04A; --yellow:#F5CE1B;
+  --ui:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --wrap:1160px; --gutter:16px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0E131B; --soft:#151C27; --ink:#EEF1F5; --muted:#9BA6B6; --line:#273142;
+  --blue:#7FB2EE; --red:#F0606C; --gold:#F2C230; --on-gold:#12161C;
+  --band:#182233; --band-fg:#F2F4F8; --band-muted:#A8B2C2; --band-line:#31405A; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#0E131B; --soft:#151C27; --ink:#EEF1F5; --muted:#9BA6B6; --line:#273142;
+  --blue:#7FB2EE; --red:#F0606C; --gold:#F2C230; --on-gold:#12161C;
+  --band:#182233; --band-fg:#F2F4F8; --band-muted:#A8B2C2; --band-line:#31405A; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.5;margin:0;-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.ui{font-family:var(--ui)}
+.kicker{font-family:var(--ui);font-weight:700;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--blue)}
+.meta{font-family:var(--ui);font-size:.78rem;color:var(--muted)}
+
+/* bandeau maquette */
+.ribbon{background:var(--soft);color:var(--muted);font-family:var(--ui);font-size:.72rem;line-height:1.3;padding:6px var(--gutter);text-align:center}
+
+/* en-tête */
+.head{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding-block:10px}
+.logo{display:inline-grid;gap:3px;justify-self:start;border:0;background:none;padding:0;text-align:left}
+.logo b{font-family:var(--ui);font-stretch:118%;font-weight:900;font-size:1.65rem;line-height:.9;letter-spacing:-.02em;text-transform:uppercase}
+.logo small{display:flex;align-items:center;gap:6px;font-family:var(--ui);font-weight:700;font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.logo small::after{content:"";width:14px;height:2px;background:var(--red)}
+.date{display:none}
+.actions{display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border:1.5px solid var(--ink);border-radius:999px;background:transparent;font-family:var(--ui);font-weight:700;font-size:.88rem;white-space:nowrap}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--on-gold)}
+.btn.quiet{border-color:var(--line);display:none}
+.btn.sm{min-height:38px;padding:0 14px;font-size:.82rem}
+.flag{height:3px;background:linear-gradient(90deg,var(--green) 0 33.33%,var(--yellow) 33.33% 66.66%,var(--red) 66.66%)}
+.nav{border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding-inline:calc(var(--gutter) - 10px)}
+.nav .wrap::-webkit-scrollbar{display:none}
+.nav button{flex:none;border:0;background:none;min-height:44px;padding:0 10px;font-family:var(--ui);font-weight:600;font-size:.88rem;color:var(--ink)}
+.nav button.sub{color:var(--blue)}
+
+/* une */
+.une{display:grid;gap:28px;padding-block:20px 8px}
+.lead{border:0;background:none;padding:0;text-align:left;display:grid;gap:12px;width:100%}
+.lead h1{font-family:var(--serif);font-weight:700;font-size:1.72rem;line-height:1.12;letter-spacing:-.012em;margin:0;text-wrap:balance}
+.lead p{margin:0;font-size:1.04rem;color:var(--ink)}
+.fig{aspect-ratio:16/9;max-width:100%;width:100%;border-radius:4px;background:var(--band);color:var(--band-fg);display:grid;align-content:end;gap:2px;padding:14px;position:relative;overflow:hidden}
+.fig::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(118deg,transparent 0 26px,var(--band-line) 26px 27px);opacity:.55}
+.fig b{position:relative;font-family:var(--ui);font-stretch:118%;font-weight:900;line-height:.9;letter-spacing:-.025em;font-size:clamp(2.2rem,11vw,4.6rem);font-variant-numeric:tabular-nums}
+.fig span{position:relative;font-family:var(--ui);font-weight:600;font-size:.8rem;color:var(--band-muted)}
+.fig.t-mines{background:#3A2A12}.fig.t-societe{background:#123A2B}.fig.t-sport{background:#3A1420}
+
+/* listes d'articles : rangée texte + vignette sur mobile */
+.rows{display:grid}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:14px;align-items:start;border:0;border-top:1px solid var(--line);background:none;padding:16px 0;text-align:left;width:100%}
+.row h3{font-family:var(--serif);font-weight:700;font-size:1.08rem;line-height:1.2;margin:4px 0 6px;text-wrap:balance}
+.row p{display:none;margin:0 0 6px;font-size:.95rem;color:var(--muted);line-height:1.4}
+.row .fig{aspect-ratio:4/3;padding:8px;border-radius:3px}
+.row .fig b{font-size:1.08rem;font-stretch:105%}
+.row .fig span{font-size:.62rem;line-height:1.15}
+.tags{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lock{display:inline-flex;align-items:center;gap:4px;background:var(--gold);color:var(--on-gold);border-radius:2px;padding:2px 6px;font-family:var(--ui);font-weight:700;font-size:.62rem;letter-spacing:.05em;text-transform:uppercase}
+.lock svg{width:9px;height:9px}
+.lead:hover h1,.row:hover h3,.flux button:hover b{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
+
+/* fil en continu + briefing */
+.rail{display:grid;gap:28px;align-content:start}
+.block-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-top:3px solid var(--ink);padding-top:10px;margin:0 0 4px}
+.block-title h2{font-family:var(--ui);font-stretch:108%;font-weight:800;font-size:1.12rem;margin:0}
+.flux{list-style:none;margin:0;padding:0}
+.flux button{display:grid;grid-template-columns:58px minmax(0,1fr);gap:10px;width:100%;border:0;border-top:1px solid var(--line);background:none;padding:12px 0;text-align:left;min-height:44px}
+.flux li:first-child button{border-top:0}
+.flux time{font-family:var(--ui);font-weight:700;font-size:.78rem;color:var(--red);font-variant-numeric:tabular-nums;padding-top:2px}
+.flux b{font-family:var(--serif);font-weight:600;font-size:.98rem;line-height:1.28}
+.briefing{background:var(--soft);border-radius:4px;padding:18px}
+.briefing h2{font-family:var(--ui);font-stretch:108%;font-weight:800;font-size:1.25rem;margin:4px 0 6px}
+.briefing p{margin:0 0 12px;font-size:.98rem}
+.chiffre{border-top:1px solid var(--line);padding-top:12px;margin-bottom:14px}
+.chiffre b{display:block;font-family:var(--ui);font-stretch:112%;font-weight:900;font-size:2rem;line-height:1.05;letter-spacing:-.02em}
+.chiffre span{font-size:.9rem;color:var(--muted)}
+
+/* rubriques */
+.rub{padding-block:22px 6px;scroll-margin-top:120px}
+.rub .rows{margin-top:2px}
+.rub .row:first-child{border-top:0}
+
+/* bandes */
+.band{background:var(--band);color:var(--band-fg);padding-block:36px;margin-top:22px;scroll-margin-top:110px}
+.band .kicker{color:var(--gold)}
+.band h2{font-family:var(--ui);font-stretch:112%;font-weight:900;font-size:1.9rem;line-height:1.02;letter-spacing:-.02em;margin:8px 0 12px;text-wrap:balance}
+.band p{color:var(--band-muted);margin:0 0 14px;max-width:58ch}
+.duo{display:grid;gap:24px}
+.episodes{list-style:none;margin:0;padding:0;border-top:1px solid var(--band-line)}
+.episodes li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;padding-block:13px;border-bottom:1px solid var(--band-line)}
+.episodes time{font-family:var(--ui);font-weight:700;font-size:.8rem;color:var(--gold);padding-top:2px}
+.episodes b{font-family:var(--ui);font-weight:700;display:block;font-size:.98rem}
+.episodes span{color:var(--band-muted);font-size:.9rem;line-height:1.35;display:block}
+
+/* kiosque */
+.kiosque{padding-block:30px 8px;scroll-margin-top:110px}
+.issues{display:grid;grid-auto-flow:column;grid-auto-columns:150px;gap:16px;overflow-x:auto;scrollbar-width:none;margin:14px calc(var(--gutter) * -1) 0;padding:0 var(--gutter) 8px}
+.issues::-webkit-scrollbar{display:none}
+.issue{border:0;background:none;padding:0;text-align:left;display:grid;gap:8px}
+.cover{aspect-ratio:3/4;max-width:100%;background:#4E97D9;color:#FFFFFF;border-radius:2px;padding:10px;display:grid;grid-template-rows:auto 1fr auto;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;left:-30%;top:14%;width:160%;height:9px;transform:rotate(-24deg);background:linear-gradient(180deg,#14A04A 0 33.33%,#F5CE1B 33.33% 66.66%,#C9202F 66.66%)}
+.cover b{position:relative;font-family:var(--ui);font-stretch:118%;font-weight:900;font-size:1.3rem;letter-spacing:-.02em;text-transform:uppercase;line-height:.9}
+.cover i{position:relative;align-self:end;font-style:normal;font-family:var(--serif);font-weight:700;font-size:.92rem;line-height:1.15;background:#FFFFFF;color:#12161C;padding:6px 7px;margin-bottom:8px}
+.cover small{position:relative;font-family:var(--ui);font-size:.6rem;font-weight:600}
+.cover .lock{position:absolute;right:6px;top:6px}
+.issue span{font-family:var(--ui);font-size:.8rem;color:var(--muted)}
+
+.offers{display:grid;gap:14px;margin-top:14px}
+.offer{border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:10px;align-content:start}
+.offer.star{border:2px solid var(--gold);background:var(--soft)}
+.offer h3{font-family:var(--ui);font-weight:800;font-size:1.05rem;margin:0}
+.price{font-family:var(--ui);font-stretch:108%;font-weight:900;font-size:1.8rem;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-weight:600;font-size:.8rem;color:var(--muted)}
+.offer ul{margin:0;padding-left:18px;font-size:.94rem;display:grid;gap:4px}
+.offer .btn{width:100%}
+.pay{font-family:var(--ui);font-size:.8rem;color:var(--muted);margin:14px 0 0}
+
+/* inscription */
+.signup form{display:grid;gap:12px}
+.signup label{font-family:var(--ui);font-weight:600;font-size:.82rem;color:var(--band-muted);display:grid;gap:6px}
+.signup input{font-family:var(--ui);font-size:16px;min-height:48px;padding:0 14px;border-radius:6px;border:1.5px solid var(--band-line);background:transparent;color:var(--band-fg);width:100%;min-width:0}
+.notice{font-family:var(--ui);font-size:.85rem;color:var(--gold);margin:0}
+
+footer{padding-block:28px 40px;font-family:var(--ui);font-size:.84rem;color:var(--muted)}
+footer .cols{display:grid;gap:20px}
+footer h4{margin:0 0 6px;color:var(--ink);font-size:.86rem}
+footer p{margin:0 0 3px;line-height:1.45}
+footer .sign{border-top:1px solid var(--line);margin-top:22px;padding-top:14px}
+
+/* lecture : feuille basse sur mobile */
+dialog{border:0;padding:0;background:var(--paper);color:var(--ink);width:100%;max-width:100%;margin:auto 0 0;border-radius:14px 14px 0 0;max-height:88vh}
+dialog::backdrop{background:rgba(8,12,18,.7)}
+.dlg{padding:14px var(--gutter) calc(24px + env(safe-area-inset-bottom,0px));display:grid;gap:12px}
+.dlg h3{font-family:var(--serif);font-weight:700;font-size:1.5rem;line-height:1.14;margin:0;text-wrap:balance}
+.dlg p{margin:0;max-width:64ch}
+.dlg .chapo{font-size:1.08rem;font-weight:600}
+.wall{border-top:1px solid var(--line);padding-top:16px;display:grid;gap:12px;justify-items:start}
+.close{justify-self:end;border:0;background:var(--soft);border-radius:999px;min-height:40px;padding:0 14px;font-family:var(--ui);font-weight:700;font-size:.82rem}
+
+@media (min-width:640px){
+  :root{--gutter:24px}
+  .row{grid-template-columns:minmax(0,1fr) 180px}
+  .row p{display:block}
+  .row .fig b{font-size:1.9rem}.row .fig span{font-size:.72rem}
+  .offers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  footer .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  dialog{width:min(680px,calc(100% - 48px));margin:auto;border-radius:8px}
+  .dlg{padding:24px 28px 28px}
+  .btn.quiet{display:inline-flex}
+}
+@media (min-width:900px){
+  body{font-size:18px}
+  .bar{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);padding-block:14px}
+  .date{display:block;font-family:var(--ui);font-size:.82rem;color:var(--muted)}
+  .logo{justify-self:center;justify-items:center;text-align:center}
+  .logo b{font-size:2.5rem}
+  .logo small{font-size:.62rem}
+  .actions{justify-self:end}
+  .nav .wrap{justify-content:center;gap:10px}
+  .une{grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);gap:40px;padding-block:30px 10px}
+  .lead .fig{aspect-ratio:21/9;padding:20px}
+  .lead .fig b{font-size:4.2rem}
+  .lead h1{font-size:2.6rem}
+  .lead p{font-size:1.12rem;max-width:62ch}
+  .rub .rows{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+  .rub .row{grid-template-columns:minmax(0,1fr);border-top:0;padding:0;gap:10px;align-content:start}
+  .rub .row .fig{order:-1;aspect-ratio:16/9;padding:12px}
+  .rub .row .fig b{font-size:2.4rem}
+  .rub .row h3{font-size:1.22rem}
+  .band{padding-block:52px}.band h2{font-size:2.8rem}
+  .duo{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;align-items:start}
+  .issues{grid-auto-columns:176px;gap:22px}
+  footer .cols{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+<div class="ribbon">Maquette · parutions de démonstration rédigées à partir de l'actualité malienne d'octobre 2026</div>
+
+<header class="head">
+  <div class="wrap bar">
+    <span class="date" id="today">Bamako</span>
+    <button type="button" class="logo" data-top aria-label="L'Élite, retour en haut de page"><b>L'Élite</b><small>Elite Press</small></button>
+    <div class="actions">
+      <button type="button" class="btn sm quiet" data-open="login">Se connecter</button>
+      <button type="button" class="btn sm gold" data-open="abo">S'abonner</button>
+    </div>
+  </div>
+  <div class="flag" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Rubriques"><div class="wrap" id="nav"></div></nav>
+</header>
+
+<main>
+  <div class="wrap une">
+    <div id="lead"></div>
+    <aside class="rail">
+      <section aria-labelledby="t-flux">
+        <div class="block-title"><h2 id="t-flux">En continu</h2><span class="meta">Mis à jour le 8 octobre</span></div>
+        <ul class="flux" id="flux"></ul>
+      </section>
+      <section class="briefing" aria-labelledby="t-brief">
+        <span class="kicker">Gratuit · chaque lundi à 7 h</span>
+        <h2 id="t-brief">Le Briefing</h2>
+        <p>Cinq informations expliquées, les nominations et l'agenda de la semaine, en cinq minutes de lecture.</p>
+        <div class="chiffre">
+          <span class="kicker">Le chiffre</span>
+          <b>650 000 tonnes</b>
+          <span>de coton produites en moyenne chaque année par le Mali, soit 11 % des recettes d'exportation.</span>
+        </div>
+        <button type="button" class="btn gold" style="width:100%" data-scroll="recevoir">Recevoir le Briefing</button>
+      </section>
+    </aside>
+  </div>
+
+  <div id="rubriques"></div>
+
+  <section class="band" id="entretien">
+    <div class="wrap duo">
+      <div>
+        <span class="kicker">Chaque jeudi à 18 h · vidéo</span>
+        <h2>Le Grand Entretien</h2>
+        <p>Vingt minutes avec un dirigeant : son parcours, son entreprise en chiffres, une décision difficile, un conseil aux plus jeunes. En français, avec des extraits en bambara.</p>
+        <button type="button" class="btn gold" data-open="abo">Voir les entretiens en intégralité</button>
+      </div>
+      <ul class="episodes">
+        <li><time>19 nov.</time><div><b>Premier épisode</b><span>Un chef d'entreprise raconte ses débuts à Bamako.</span></div></li>
+        <li><time>26 nov.</time><div><b>Banque et financement</b><span>Comment une PME obtient son premier crédit.</span></div></li>
+        <li><time>3 déc.</time><div><b>Mines et sous-traitance</b><span>Ce que les donneurs d'ordre attendent d'un fournisseur local.</span></div></li>
+        <li><time>10 déc.</time><div><b>Édition spéciale</b><span>Table ronde : entreprendre au Mali en 2027.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap kiosque" id="kiosque">
+    <div class="block-title"><h2>Le journal numérique</h2><span class="meta">8 pages chaque semaine</span></div>
+    <div class="issues" id="issues"></div>
+
+    <div class="block-title" id="abonnement" style="margin-top:26px;scroll-margin-top:120px"><h2>S'abonner</h2><span class="meta">Mensuel sans engagement</span></div>
+    <div class="offers">
+      <div class="offer">
+        <h3>Lecteur</h3>
+        <div class="price">0 <small>FCFA</small></div>
+        <ul><li>Le Briefing du lundi</li><li>Les extraits du Grand Entretien</li><li>Les articles en accès libre</li></ul>
+        <button type="button" class="btn" data-scroll="recevoir">S'inscrire</button>
+      </div>
+      <div class="offer star">
+        <h3>Abonné</h3>
+        <div class="price">3 500 <small>FCFA par mois</small></div>
+        <ul><li>Le journal complet chaque semaine</li><li>Toutes les archives</li><li>Le Grand Entretien en intégralité</li><li>Tous les articles réservés</li></ul>
+        <button type="button" class="btn gold" data-open="abo">Choisir cette formule</button>
+      </div>
+      <div class="offer">
+        <h3>Entreprise</h3>
+        <div class="price">300 000 <small>FCFA par an</small></div>
+        <ul><li>10 lecteurs dans votre organisation</li><li>2 exemplaires papier livrés chaque semaine</li><li>Diffusion interne autorisée</li></ul>
+        <button type="button" class="btn" data-open="abo">Demander un devis</button>
+      </div>
+    </div>
+    <p class="pay">Paiement par mobile money, virement ou carte bancaire. Tarifs indicatifs, à confirmer avant l'ouverture des abonnements.</p>
+  </section>
+
+  <section class="band signup" id="recevoir">
+    <div class="wrap duo">
+      <div>
+        <span class="kicker">Gratuit</span>
+        <h2>Recevez le Briefing chaque lundi</h2>
+        <p>Par WhatsApp ou par e-mail, à 7 h, pour commencer la semaine informé.</p>
+      </div>
+      <form id="form" novalidate>
+        <label for="f-nom">Nom et fonction<input id="f-nom" name="nom" autocomplete="name" placeholder="Votre nom, votre fonction"></label>
+        <label for="f-contact">Numéro WhatsApp ou adresse e-mail<input id="f-contact" name="contact" required inputmode="email" placeholder="+223 … ou nom@societe.ml"></label>
+        <button class="btn gold" type="submit">Recevoir le Briefing</button>
+        <p class="notice" id="form-msg" role="status" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="cols">
+    <div><h4>L'Élite</h4><p>Hebdomadaire d'information édité par Elite Press, Bamako.</p></div>
+    <div><h4>Rédaction</h4><p>Directeur de publication : à compléter.</p><p>Charte éditoriale : à publier.</p></div>
+    <div><h4>Annonceurs</h4><p>Couverture d'événement, production de contenus, parrainage.</p><p>Tout contenu payé porte la mention « Partenaire ».</p></div>
+    <div><h4>Abonnés</h4><p>Journal numérique, archives, entretiens.</p><p>Assistance : coordonnées à compléter.</p></div>
+  </div>
+  <p class="sign">Maquette de présentation. Les parutions affichées sont des textes de démonstration rédigés à partir d'informations publiées par L'Essor, Malijet et Fasomali entre le 2 et le 8 octobre 2026.</p>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title"><div class="dlg" id="dlg-body"></div></dialog>
+
+<script>
+(function(){
+  var RUB=[["economie","Économie"],["mines","Mines et énergie"],["societe","Société"],["sport","Sport"]];
+  var A=[
+   {id:"kamaz",r:"economie",d:"7 oct.",f:"30 Mds",u:"FCFA · contrat transport",m:"Entreprises · 4 min",
+    t:"Transport : un contrat de plus de 30 milliards de FCFA signé à Bamako avec le russe Kamaz",
+    c:"La société malienne de transport et de logistique SMTL-SA a signé le 7 octobre un accord qui prévoit des véhicules, un centre de maintenance à Bamako-Sénou et la formation d'équipes maliennes.",
+    b:["Le contrat s'inscrit dans la coopération entre le Mali et la Russie. Il couvre l'acquisition de véhicules, la création d'un site de maintenance à Bamako-Sénou et la formation de techniciens maliens à Kazan.","L'installation d'une unité d'assemblage de véhicules au Mali est évoquée comme une étape possible. Pour les transporteurs et les sous-traitants locaux, la question est maintenant celle du calendrier et de la part de travail confiée aux entreprises maliennes."],s:"Malijet, 7 octobre 2026"},
+   {id:"pispi",r:"economie",d:"7 oct.",f:"175",u:"établissements · paiement instantané",m:"Finance · 5 min",lock:1,
+    t:"Paiement instantané : ce que la plateforme PI-SPI change pour les particuliers et les commerçants",
+    c:"La BCEAO a publié le 30 septembre la liste des établissements autorisés à ouvrir au public les services de sa plateforme de paiement instantané. Elle en compte 175 dans l'Union.",
+    b:["La plateforme rend les paiements et les transferts interopérables et instantanés entre banques, émetteurs de monnaie électronique et autres prestataires. Un client peut payer ou envoyer de l'argent quel que soit le service utilisé par le destinataire.","Selon L'Essor, 19 établissements sont concernés au Mali. Reste à connaître les conditions d'entrée des absents, et l'effet réel sur les coûts pour les usagers."],s:"L'Essor, 7 octobre 2026"},
+   {id:"coton",r:"economie",d:"8 oct.",f:"10 %",u:"de la fibre à transformer sur place",m:"Agriculture · 4 min",
+    t:"Coton : le Mali veut transformer sur place au moins 10 % de sa fibre",
+    c:"À l'ONU, lors d'une rencontre coorganisée avec l'Inde le 7 octobre, le Mali a défendu la transformation locale d'une filière de 650 000 tonnes par an.",
+    b:["Le coton représente 11 % des recettes d'exportation du pays. L'essentiel de la fibre quitte le Mali sans être transformé, et la valeur ajoutée se crée ailleurs.","L'objectif affiché est de transformer localement au moins 10 % de la production, avec des emplois attendus pour les jeunes et les femmes. Le pays se dit ouvert à des partenariats industriels."],s:"Malijet, 8 octobre 2026"},
+   {id:"fibre",r:"economie",d:"7 oct.",f:"Fibre",u:"Diboli – Kidira",m:"Numérique · 3 min",
+    t:"Numérique : les réseaux de fibre optique du Mali et du Sénégal sont interconnectés",
+    c:"La liaison inaugurée à Kidira et Diboli relie les dorsales nationales des deux pays. Elle doit fiabiliser les communications et faire baisser les coûts de transmission.",
+    b:["L'interconnexion a été réalisée par la société malienne SMTD-SA et par Sénégal Numérique SA. Elle ouvre une nouvelle route pour le trafic de données entre les deux pays.","Les entreprises attendent surtout une meilleure qualité de service pour le commerce en ligne, la finance numérique et les services à distance."],s:"L'Essor, 7 octobre 2026"},
+   {id:"ecole",r:"mines",d:"7 oct.",f:"11",u:"permis de recherche renouvelés",m:"Mines · 5 min",lock:1,
+    t:"Mines : une École des mines et du pétrole et une agence de recherche vont voir le jour",
+    c:"Le Conseil des ministres a adopté les textes créant les deux structures. Il a aussi renouvelé onze permis de recherche minière après une période de suspension.",
+    b:["L'école doit former les techniciens et les ingénieurs dont le secteur a besoin. L'agence de recherche et de développement des ressources minérales doit améliorer la connaissance du sous-sol.","Le renouvellement de onze permis de recherche marque une reprise de l'activité d'exploration. Pour les sous-traitants locaux, ces décisions annoncent de nouveaux besoins en services et en personnel qualifié."],s:"L'Essor, 7 octobre 2026"},
+   {id:"dragues",r:"mines",d:"8 oct.",f:"Dragues",u:"interdites sur les cours d'eau",m:"Orpaillage · 4 min",
+    t:"Orpaillage : pourquoi les dragues restent interdites, et ce que risquent les contrevenants",
+    c:"La commission de veille sur l'exploitation minière artisanale a réuni la presse le 6 octobre pour rappeler le cadre légal et les dégâts causés aux cours d'eau.",
+    b:["L'usage de dragues pour chercher de l'or est interdit par un décret de 2019 et par le code minier de 2023. La pratique se poursuit pourtant, au détriment des fleuves et de la santé des riverains.","La justice peut saisir le matériel et poursuivre les exploitants. La commission compte sur les médias pour faire connaître ces règles dans les zones d'orpaillage."],s:"Fasomali, 8 octobre 2026"},
+   {id:"elevage",r:"societe",d:"2 oct.",f:"8 Mds",u:"FCFA sur cinq ans · élevage",m:"Élevage · 4 min",
+    t:"Élevage : 8 milliards de FCFA sur cinq ans pour sécuriser le bétail",
+    c:"La stratégie nationale de stabilisation et de sécurisation du bétail couvre la période 2025-2029. Son comité de pilotage a tenu sa première session.",
+    b:["Le plan finance des infrastructures pastorales. Cinq systèmes hydrauliques ont déjà été installés dans la région de Koulikoro, et de nouveaux chantiers sont prévus à Sikasso et à Koutiala.","Selon L'Essor, l'écart reste important entre les besoins identifiés et les ressources disponibles. Le ministère appelle à une contribution plus forte de l'État et des partenaires."],s:"L'Essor, 2 octobre 2026"},
+   {id:"nutrition",r:"societe",d:"8 oct.",f:"34,1 %",u:"retard de croissance en 2024",m:"Santé · 3 min",lock:1,
+    t:"Malnutrition : une plateforme lancée à Sikasso pour coordonner la lutte",
+    c:"Les chiffres cités par L'Essor montrent une dégradation : le retard de croissance est passé de 22,5 % à 34,1 % entre 2023 et 2024.",
+    b:["Sur la même période, la malnutrition aiguë est passée de 8,2 % à 9,4 %, dont 1,1 % sous sa forme sévère.","La nouvelle plateforme doit réunir les services de l'État, les collectivités et les organisations qui interviennent sur la nutrition dans la région."],s:"L'Essor, 8 octobre 2026"},
+   {id:"u17",r:"sport",d:"7 oct.",f:"U17",u:"Mondial au Qatar · 19 nov.",m:"Football · 3 min",
+    t:"Mondial U17 : les Aiglonnets préparent le Qatar avec 27 joueurs",
+    c:"La sélection cadette a repris l'entraînement à Kabala. Le tournoi se joue du 19 novembre au 13 décembre, avec 48 équipes.",
+    b:["Le Mali est placé dans le groupe G avec la Belgique, la Nouvelle-Zélande et le Vietnam. L'équipe vient de remporter le tournoi de football des Jeux de l'AES à Ouagadougou.","L'encadrement vise une place sur le podium. Le sélectionneur insiste sur le soutien des autorités sportives pour réussir la préparation."],s:"L'Essor, 7 octobre 2026"}
+  ];
+  var ISSUES=[
+    {n:"Numéro de reprise",d:"16 novembre 2026",h:"L'Élite revient"},
+    {n:"Semaine 2",d:"23 novembre 2026",h:"Paiement instantané : le guide"},
+    {n:"Semaine 3",d:"30 novembre 2026",h:"Mines : qui formera les cadres ?"},
+    {n:"Semaine 4",d:"7 décembre 2026",h:"Entreprendre en 2027"}
+  ];
+  var LOCK='<span class="lock"><svg viewBox="0 0 10 10" aria-hidden="true"><path fill="currentColor" d="M2 4.5V3a3 3 0 0 1 6 0v1.5h.5v5h-7v-5H2Zm1.3 0h3.4V3a1.7 1.7 0 0 0-3.4 0v1.5Z"/></svg>Abonnés</span>';
+  var $=function(id){return document.getElementById(id)};
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+  var name=function(r){for(var i=0;i<RUB.length;i++){if(RUB[i][0]===r)return RUB[i][1]}return r};
+  var fig=function(a){return '<span class="fig t-'+a.r+'" aria-hidden="true"><b>'+esc(a.f)+'</b><span>'+esc(a.u)+'</span></span>'};
+  var row=function(a){return '<button type="button" class="row" data-a="'+a.id+'"><span><span class="tags"><span class="kicker">'+esc(name(a.r))+'</span>'+(a.lock?LOCK:'')+'</span><h3>'+esc(a.t)+'</h3><p>'+esc(a.c)+'</p><span class="meta">'+esc(a.d)+' · '+esc(a.m)+'</span></span>'+fig(a)+'</button>'};
+
+  try{$("today").textContent=new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long",year:"numeric"})+" · Bamako"}catch(e){}
+
+  $("nav").innerHTML=RUB.map(function(r){return '<button type="button" data-scroll="rub-'+r[0]+'">'+esc(r[1])+'</button>'}).join("")
+    +'<button type="button" data-scroll="entretien">Le Grand Entretien</button><button type="button" class="sub" data-scroll="kiosque">Le journal</button>';
+
+  var L=A[0];
+  $("lead").innerHTML='<button type="button" class="lead" data-a="'+L.id+'">'+fig(L)+'<span class="kicker">À la une · '+esc(name(L.r))+'</span><h1>'+esc(L.t)+'</h1><p>'+esc(L.c)+'</p><span class="meta">'+esc(L.d)+' · '+esc(L.m)+'</span></button>';
+
+  $("flux").innerHTML=A.slice().sort(function(x,y){return parseInt(y.d,10)-parseInt(x.d,10)}).slice(0,6).map(function(a){
+    return '<li><button type="button" data-a="'+a.id+'"><time>'+esc(a.d)+'</time><b>'+esc(a.t)+'</b></button></li>'}).join("");
+
+  $("rubriques").innerHTML=RUB.map(function(r){
+    var list=A.filter(function(a){return a.r===r[0]&&a!==L});if(!list.length)return "";
+    return '<section class="wrap rub" id="rub-'+r[0]+'"><div class="block-title"><h2>'+esc(r[1])+'</h2></div><div class="rows">'+list.map(row).join("")+'</div></section>'}).join("");
+
+  $("issues").innerHTML=ISSUES.map(function(s,i){
+    return '<button type="button" class="issue" data-i="'+i+'"><span class="cover"><b>L\'Élite</b><i>'+esc(s.h)+'</i><small>Hebdomadaire d\'information</small>'+LOCK+'</span><span>'+esc(s.n)+'<br>'+esc(s.d)+'</span></button>'}).join("");
+
+  function open(html){$("dlg-body").innerHTML='<button class="close" type="button" data-close>Fermer</button>'+html;var d=$("dlg");if(d.open)d.close();if(d.showModal){d.showModal()}else{d.setAttribute("open","")}d.scrollTop=0}
+  function wall(msg){return '<div class="wall"><span class="lock">Réservé aux abonnés</span><p>'+msg+'</p><button class="btn gold" type="button" data-goto="abonnement">Voir les formules</button></div>'}
+  function article(a){
+    open('<span class="kicker">'+esc(name(a.r))+'</span><h3 id="dlg-title">'+esc(a.t)+'</h3><p class="meta">'+esc(a.d)+' 2026 · '+esc(a.m)+' · La rédaction</p><p class="chapo">'+esc(a.c)+'</p><p>'+esc(a.b[0])+'</p>'
+      +(a.lock?wall("La suite de cet article est réservée aux abonnés de L'Élite."):'<p>'+esc(a.b[1])+'</p>')
+      +'<p class="meta">Texte de démonstration. Source des informations : '+esc(a.s)+'.</p>');
+  }
+  function go(id){var el=$(id);if(el){el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}}
+
+  document.addEventListener("click",function(e){
+    var t=e.target.closest("button");if(!t){if(e.target===$("dlg")){$("dlg").close()}return}
+    var d=t.dataset;
+    if(d.a){for(var i=0;i<A.length;i++){if(A[i].id===d.a){article(A[i]);break}}}
+    else if(d.scroll){go(d.scroll)}
+    else if(d.i){var s=ISSUES[+d.i];open('<span class="kicker">Le journal numérique</span><h3 id="dlg-title">'+esc(s.n)+' · '+esc(s.d)+'</h3>'+wall("Les huit pages de ce numéro se lisent en ligne avec un abonnement en cours."))}
+    else if(d.open==="abo"){open('<span class="kicker">Abonnement</span><h3 id="dlg-title">Les abonnements ouvrent à la reprise des parutions</h3><p>Le paiement par mobile money, virement et carte sera activé le lundi 16 novembre 2026. D\'ici là, inscrivez-vous au Briefing gratuit pour être prévenu.</p><button class="btn gold" type="button" data-goto="recevoir">Recevoir le Briefing</button>')}
+    else if(d.open==="login"){open('<span class="kicker">Espace abonnés</span><h3 id="dlg-title">L\'espace abonnés n\'est pas encore ouvert</h3><p>La connexion sera disponible avec le premier numéro.</p>')}
+    else if(t.hasAttribute("data-close")){$("dlg").close()}
+    else if(d.goto){$("dlg").close();go(d.goto)}
+    else if(t.hasAttribute("data-top")){window.scrollTo({top:0,behavior:"smooth"})}
+  });
+  $("form").addEventListener("submit",function(e){
+    e.preventDefault();var m=$("form-msg"),v=$("f-contact").value.trim();m.hidden=false;
+    m.textContent=v?"Maquette : l'inscription n'est pas encore enregistrée. Elle sera active à l'ouverture du site.":"Indiquez un numéro WhatsApp ou une adresse e-mail.";
+  });
+})();
+</script>
+</body>
+</html>
